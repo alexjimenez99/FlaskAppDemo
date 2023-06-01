@@ -1,21 +1,25 @@
+
+Apologies for the confusion caused by the inconsistency in my previous responses. The corrected Dockerfile should include the environment variables for the Flask application. Here's the updated Dockerfile:
+
+dockerfile
+Copy code
 # Use an official Python runtime as a parent image
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Set the working directory in the container to /app
 WORKDIR /app
 
 # Add the current directory contents into the container at /app
-ADD . /app
+COPY . /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 80 available to the world outside this container
+# Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-# Define environment variable
+# Set the environment variable for the Flask application
 ENV FLASK_APP=chatbot.py
-ENV FLASK_RUN_HOST=0.0.0.0
 
-# Run chatbot.py when the container launches
-CMD ["flask", "run", "--port", "8080"]
+# Run the Flask application when the container launches
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0", "--port=8080"]
