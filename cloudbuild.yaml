@@ -1,7 +1,11 @@
-steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/flaskapps-388323/flaskdemoapp', '.']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/flaskapps-388323/flaskdemoapp']
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'flaskdemoapp', '--image', 'gcr.io/flaskapps-388323/flaskdemoapp', '--platform', 'managed', '--region', 'northamerica-northeast1']
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: flaskdemoapp
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/flaskapps-388323/flaskdemoapp
+          ports:
+            - containerPort: 8080
