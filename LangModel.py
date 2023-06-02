@@ -40,7 +40,7 @@ class LangModel:
 	def get_model(self, message):
 		conversation = ConversationChain(llm=self.llm, verbose=True, memory = self.history)
 		output       = conversation.predict(input=message)
-		print('output: ', output)
+# 		print('output: ', output)
 		# self.collect_memory(output, message)
 		return output
 
