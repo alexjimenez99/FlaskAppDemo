@@ -23,7 +23,7 @@ from langchain.prompts.chat import (
     HumanMessagePromptTemplate,
 )
 import textwrap
-from langchain.memory import ChatMessageHistory
+from langchain.memory import ChatMessageHistory, ConversationSummaryBufferMemory, ConversationBufferMemory
 
 
 # openai.api_key = "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"
@@ -35,19 +35,14 @@ class LangModel:
 		os.environ["OPENAI_API_KEY"] = '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'
 		load_dotenv(find_dotenv())
 		self.llm     = OpenAI(model_name="text-davinci-003")
-		self.history = ChatMessageHistory()
+		self.history = ConversationBufferMemory()
         
 	def get_model(self, message):
 		conversation = ConversationChain(llm=self.llm, verbose=True, memory = self.history)
-		output = conversation.predict(input=message)
-		self.collect_memory(output, message)
+		output       = conversation.predict(input=message)
+		print('output: ', output)
+		# self.collect_memory(output, message)
 		return output
-
-	def collect_memory(self, ai_message, user_message):
-		self.history.add_user_message(ai_message)
-		self.history.add_user_message(user_message)
-		
-
 
 		
 
