@@ -1,7 +1,3 @@
-
-Apologies for the confusion caused by the inconsistency in my previous responses. The corrected Dockerfile should include the environment variables for the Flask application. Here's the updated Dockerfile:
-
-dockerfile
 Copy code
 # Use an official Python runtime as a parent image
 FROM python:3.11-slim
