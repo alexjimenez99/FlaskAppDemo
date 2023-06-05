@@ -19,5 +19,5 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=production
 
 # Run chatbot.py when the container launches
-CMD gunicorn --bind :8080 chatbot:app
+CMD gunicorn --bind :$PORT chatbot:app
 # CMD ["flask", "run", "--port", "80"]
