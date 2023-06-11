@@ -32,7 +32,7 @@ from langchain.memory import ChatMessageHistory, ConversationSummaryBufferMemory
 class LangModel:
     
 	def __init__(self):
-		os.environ["OPENAI_API_KEY"] = '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'
+		os.environ["OPENAI_API_KEY"] = 'INPUT KEY HERE DISABLED FOR PUBLIC VIEW'
 		load_dotenv(find_dotenv())
 		self.llm     = OpenAI(model_name="text-davinci-003")
 		self.history = ConversationBufferMemory()
